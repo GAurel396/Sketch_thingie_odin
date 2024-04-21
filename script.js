@@ -1,9 +1,10 @@
 const board = document.querySelector(".board")
 const draw_board = document.querySelector("#reset")
 const square_colour = ["red", "blue", "green" ,"yellow", "purple", "cyan", "brown", "pink", "grey", "black"]
-
-let row = 8
-let column = 8
+const hover_toggle = document.querySelector("#hover")
+let hover = false
+let row = 16
+let column = 16
 
 function drawBoard () {
     console.log("drawing board")
@@ -25,12 +26,26 @@ function drawBoard () {
 
     drawBoard()
     let square = document.querySelectorAll(".square")
-    draw_board.addEventListener("click", drawBoard);
 
-    square.forEach(square => square.addEventListener("click", drawingFunction))
-    console.log(square)
+
+
+    /*hover_toggle.addEventListener("click", function(){
+        if (hover = false) {
+            hover = true
+            hover.classList.add("hover_on")
+        } else {
+            hover = false
+            hover.classList.remove("hover_on")
+        }
+    }) */
+    draw_board.addEventListener("click", drawBoard);
+    /* if (hover = true) {
+        square.forEach(square => square.addEventListener("mouseover", drawingFunction))
+    } else  {} */
+        square.forEach(square => square.addEventListener("click", drawingFunction))
+        
     function drawingFunction() {
-        console.log(event.tr)
-        event.target.style.backgroundColor = "black"
+        let random_colour = Math.floor(Math.random() * (square_colour.length + 1))
+        event.target.style.backgroundColor = square_colour[random_colour]
 
     }
