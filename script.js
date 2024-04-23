@@ -2,7 +2,6 @@ const board = document.querySelector(".board")
 const draw_board = document.querySelector("#redraw")
 const square_colour = ["red", "blue", "green" ,"yellow", "purple", "cyan", "brown", "pink", "grey", "black"]
 const hover_toggle = document.querySelector("#hover")
-const color_test = document.querySelector("#color_test")
 let hover = false
 let row = 16
 let column = 16
@@ -84,7 +83,6 @@ function hoverMove () {
         let random_g = Math.floor(Math.random()*256)
         return("rgb("+ random_r + "," + random_b + "," + random_g + ")")
     }
-    color_test.addEventListener("click", randomize_rbg)
     function drawingFunction(event) {
         if (event.target.classList.contains("square")) {
             //let random_colour = Math.floor(Math.random() * (square_colour.length + 1))
