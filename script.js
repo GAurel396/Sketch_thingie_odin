@@ -1,6 +1,7 @@
 const board = document.querySelector(".board")
-const draw_board = document.querySelector("#reset")
+const draw_board = document.querySelector("#redraw")
 const square_colour = ["red", "blue", "green" ,"yellow", "purple", "cyan", "brown", "pink", "grey", "black"]
+let random_rgb
 const hover_toggle = document.querySelector("#hover")
 let hover = false
 let row = 16
@@ -9,7 +10,7 @@ let column = 16
 function drawBoard () {
     console.log("drawing board")
     let square = document.querySelectorAll(".square")
-        square.forEach (square => square.remove()) 
+    square.forEach (square => square.remove()) 
 
     for (let i=0; i<column; i++) {
         let draw_column_div = document.createElement("div")
@@ -19,29 +20,63 @@ function drawBoard () {
             draw_rows.classList.add("square")
             draw_column_div.appendChild(draw_rows)
             }
+        
         board.appendChild(draw_column_div)  
         
-        }
     }
+}
 
     drawBoard()
     let square = document.querySelectorAll(".square")
 
+function redrawBoard () {
+        let prompted_row = prompt("Please select a number of rows:" , 8)
+        prompted_row = Number(prompted_row)
+        if (isNaN(prompted_row)) {
+            alert("Please put a valid number")
+            prompted_row = prompt("Please select a number of rows:" , 8)
+        }
+
+        if (prompted_row >= 100 ) {
+            alert("Less than 100 please, do not make your browser explode.")
+            prompted_row = prompt("Please select a number of rows:" , 8)
+        }
+        row = prompted_row
+
+        let prompted_column = prompt("Please select a number of columns:" , 8)
+        prompted_row = Number(prompted_column)
+        if (isNaN(prompted_column)) {
+            alert("Please put in valid number")
+            prompted_column = prompt("Please select a number of columns:" , 8)
+        }
+        
+        if (prompted_row >= 100 ) {
+            alert("Less than 100 please, do not make your browser explode.")
+            prompted_row = prompt("Please select a number of rows:" , 8)
+        }
+
+        column = prompted_column
+
+        drawBoard ()
+}
 
 
-    /*hover_toggle.addEventListener("click", function(){
-        if (hover = false) {
+function randomize_rbg () {
+}
+
+ hover_toggle.addEventListener("click", function(){
+        if (hover === false) {
             hover = true
             hover.classList.add("hover_on")
         } else {
             hover = false
             hover.classList.remove("hover_on")
         }
-    }) */
-    draw_board.addEventListener("click", drawBoard);
-    /* if (hover = true) {
+    }) 
+    draw_board.addEventListener("click", redrawBoard);
+    if (hover = true) {
         square.forEach(square => square.addEventListener("mouseover", drawingFunction))
-    } else  {} */
+    } else  {} 
         square.forEach(square => square.addEventListener("click", drawingFunction))
         
     function drawingFunction() {
@@ -49,3 +84,4 @@ function drawBoard () {
         event.target.style.backgroundColor = square_colour[random_colour]
 
     }
+   
