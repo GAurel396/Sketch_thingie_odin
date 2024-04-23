@@ -59,29 +59,33 @@ function redrawBoard () {
 
         drawBoard ()
 }
-
+draw_board.addEventListener("click", redrawBoard);
 
 function randomize_rbg () {
 }
 
- hover_toggle.addEventListener("click", function(){
-        if (hover === false) {
-            hover = true
-            hover.classList.add("hover_on")
-        } else {
-            hover = false
-            hover.classList.remove("hover_on")
+board.addEventListener("click", drawingFunction)
+hover_toggle.addEventListener("click", hoverMove)    
+
+function hoverMove () {
+    hover = !hover
+    console.log(hover)
+    if (hover) {
+        board.removeEventListener("click", drawingFunction)
+        board.addEventListener("mouseover", drawingFunction)
+    } else {
+        board.removeEventListener("mouseover", drawingFunction)
+        board.addEventListener("click", drawingFunction)
         }
-    }) 
-    draw_board.addEventListener("click", redrawBoard);
-    if (hover = true) {
-        square.forEach(square => square.addEventListener("mouseover", drawingFunction))
-    } else  {} 
-        square.forEach(square => square.addEventListener("click", drawingFunction))
+    }        
+
         
-    function drawingFunction() {
-        let random_colour = Math.floor(Math.random() * (square_colour.length + 1))
-        event.target.style.backgroundColor = square_colour[random_colour]
+    function drawingFunction(event) {
+        console.log("were drawing boys")
+        if (event.target.classList.contains("square")) {
+            let random_colour = Math.floor(Math.random() * (square_colour.length + 1))
+            event.target.style.backgroundColor = square_colour[random_colour]
+        }
 
     }
    
