@@ -10,17 +10,15 @@ body {
     display:flex;
     flex-direction: column;
     border: 0;
-  height: 80%;
- width: 80%;
+    height: 800px;
+    width: 792px;
     margin-top: 20px;
     border: 2px solid black;
 }
 
 .square {
-    min-height: 20px;
-    min-height: 20px;
-    flex-grow: 1;
-    flex-shrink: 0.3;
+    min-height: 6px;
+    min-height: 6px;
     flex: 1;
     border: 1px solid grey;
 
@@ -36,10 +34,17 @@ body {
     flex-direction: row;
     justify-content: center;
     align-content: space-between;
-    align-items: center;
+    align-items: stretch;
+    flex: 1;
+    height: 100%;
 
 }
 
 .hover_on{
     background-color: green;
+}
+
+.tiny {
+    font-size: 8px;
+    align-self: center;
 }

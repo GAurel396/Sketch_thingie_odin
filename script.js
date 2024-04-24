@@ -8,19 +8,19 @@ let column = 16
 
 function drawBoard () {
     console.log("drawing board")
-    let square = document.querySelectorAll(".square")
-    square.forEach (square => square.remove()) 
+    let draw_rows_div = document.querySelectorAll(".columns_holder")
+    draw_rows_div.forEach (row_holder => row_holder.remove()) 
 
-    for (let i=0; i<column; i++) {
-        let draw_column_div = document.createElement("div")
-        draw_column_div.classList.add("columns_holder")
-            for (let e=0; e<row; e++) {
-            let draw_rows = document.createElement("div")
-            draw_rows.classList.add("square")
-            draw_column_div.appendChild(draw_rows)
+    for (let i=0; i<row; i++) {
+        let draw_rows_div = document.createElement("div")
+        draw_rows_div.classList.add("columns_holder")
+            for (let e=0; e<column; e++) {
+            let draw_columns = document.createElement("div")
+            draw_columns.classList.add("square")
+            draw_rows_div.appendChild(draw_columns)
             }
         
-        board.appendChild(draw_column_div)  
+        board.appendChild(draw_rows_div)  
         
     }
 }
@@ -29,31 +29,41 @@ drawBoard()
 let square = document.querySelectorAll(".square")
 
 function redrawBoard () {
-        let prompted_row = prompt("Please select a number of rows:" , 8)
+        let prompted_row = prompt("Please select a number of rows:" , 16)
         prompted_row = Number(prompted_row)
         if (isNaN(prompted_row)) {
             alert("Please put a valid number")
-            prompted_row = prompt("Please select a number of rows:" , 8)
+            prompted_row = prompt("Please select a number of rows:" , 16)
         }
 
-        if (prompted_row >= 100 ) {
-            alert("Less than 100 please, do not make your browser explode.")
-            prompted_row = prompt("Please select a number of rows:" , 8)
+        if (prompted_row > 100 ) {
+            alert("Less than that please, do not make your browser explode.")
+            prompted_row = prompt("Please select a number of rows:" , 16)
         }
+
+        if (prompted_row == 0) {
+            prompted_row = 16
+        }
+
+        console.log(prompted_row)
         row = prompted_row
 
-        let prompted_column = prompt("Please select a number of columns:" , 8)
-        prompted_row = Number(prompted_column)
+        let prompted_column = prompt("Please select a number of columns:" , 16)
+        prompted_column = Number(prompted_column)
         if (isNaN(prompted_column)) {
             alert("Please put in valid number")
-            prompted_column = prompt("Please select a number of columns:" , 8)
+            prompted_column = prompt("Please select a number of columns:" , 16)
         }
         
-        if (prompted_row >= 100 ) {
-            alert("Less than 100 please, do not make your browser explode.")
-            prompted_row = prompt("Please select a number of rows:" , 8)
+        if (prompted_column > 100 ) {
+            alert("Less than that please, do not make your browser explode.")
+            prompted_column = prompt("Please select a number of columns:" , 16)
         }
 
+        if (prompted_column == 0) {
+            prompted_column = 16
+        }
+        console.log(prompted_column)
         column = prompted_column
 
         drawBoard ()
